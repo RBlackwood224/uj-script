@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Castle Of Dread</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="main-menu-screen" class="screen-container">
+        <div class="menu-overlay">
+            <h1>The Castle Of Dread</h1>
+            <div class="menu-buttons">
+                <button type="button" id="start-game-button-menu">START GAME</button>
+                <button type="button" id="story-button">STORY</button>
+                <button type="button" id="settings-button">SETTINGS</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="char-creation-screen" class="screen-container hidden">
+        <h1>Create Your Character</h1>
+        <div class="input-group">
+            <label for="player-name">Character Name:</label>
+            <input type="text" id="player-name" placeholder="Enter your name">
+        </div>
+
+        <div class="input-group">
+            <p>Gender:</p>
+            <label><input type="radio" name="gender" value="male"> Male</label>
+            <label><input type="radio" name="gender" value="female"> Female</label>
+            <label><input type="radio" name="gender" value="other"> Other</label>
+        </div>
+
+        <div class="input-group">
+            <p>Class:</p>
+            <label><input type="radio" name="class" value="warrior"> Warrior (High HP, High Attack)</label><br>
+            <label><input type="radio" name="class" value="mage"> Mage (High Mana, Spells coming soon)</label><br>
+            <label><input type="radio" name="class" value="rogue"> Rogue (High Flee Chance, High Dodge)</label>
+        </div>
+
+        <button type="button" id="start-game-button-char-create">Start Adventure</button>
+    </div>
+
+    <div id="story-screen" class="screen-container hidden">
+        <h1>The Story of the Castle of Dread</h1>
+        <div class="story-text">
+            <p>The Castle of Dread: Chronicle of the Forgotten Curse
+Centuries ago, over the lush, flourishing Kingdom of Aethelgard, dark clouds gathered in the sky. Legends told that in the heart of the kingdom, within a volcano long believed to be dormant, slumbered the Dragon King, Xykon, ancient master of flames and ash. But one day, thunder and earthquakes erupted from the depths, signaling: Xykon had awakened.
+
+With his awakening, he brought more than just destruction. The lands around the volcano split open, and from their depths rose a Gothic, shadow-filled fortress: The Castle of Dread. It was whispered that Xykon himself raised it from the abyss to serve as a hiding place for him and his dark servants, forged from the heart of lava and rock.
+
+Destruction was inevitable. Aethelgard's villages burned to ash, the earth cracked, and despair gripped the people. The kingdom's last hope, Princess Lysandra, renowned for her beauty and kindness, mysteriously disappeared. Had she fallen captive to the Dragon King, or perhaps met an even worse fate?
+
+Since then, the castle has become the epicenter of terror. Whoever enters is lost. Yet, rumors of the treasures hidden within and the ancient power possessed by the dragon continue to lure desperate adventurers, hopeless heroes, and lost souls.
+
+You, a wandering knight, or perhaps a forgotten wanderer from Aethelgard's once-flourishing lands, or simply driven by pure curiosity, have arrived at the volcano's edge. You've heard of the destruction, the dragon, the treasures, and Princess Lysandra. Perhaps you seek glory, perhaps redemption, or simply to solve the mysteries that have haunted for centuries.
+
+Before you rumbles the Lava Bridge, the only passage to the Castle of Dread. Behind you lies the old world, before you, the unknown. To enter means to burn your bridges behind you and confront an ancient evil whose shadow falls across the entire land. But who or what truly controls the dragon? What is the princess's true fate? And what secrets lie deep within the castle?</p>
+        </div>
+        <button type="button" id="back-to-menu-button-story">BACK</button>
+    </div>
+
+    <div id="settings-screen" class="screen-container hidden">
+        <h1>Settings</h1>
+        <div class="settings-options">
+            <p>Volume: [ ---O----- ] (Not yet implemented)</p>
+            <p>Difficulty: [ Easy | Normal | Hard ] (Not yet implemented)</p>
+            <p>Save Game: <button type="button" onclick="saveGame()">Save Now</button></p>
+            <p>Load Game: <button type="button" onclick="loadGame()">Load Last Save</button></p>
+            <p>Reset Game: <button type="button" onclick="resetGameConfirmation()">Reset All Progress</button></p>
+        </div>
+        <button type="button" id="back-to-menu-button-settings">BACK</button>
+    </div>
+
+    <div id="game-screen" class="screen-container hidden">
+        <div class="game-area-wrapper">
+            <div id="game-text-output" class="game-output">
+                </div>
+            <div id="player-status-panel" class="status-panel">
+                <h3 id="status-panel-title">Player Status</h3>
+                <div id="status-panel-content">
+                    Loading status...
+                </div>
+            </div>
+        </div>
+        
+        <div class="command-area">
+            <input type="text" id="command-input" placeholder="Type your command here..." autofocus>
+            <button type="button" id="submit-command">Enter</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

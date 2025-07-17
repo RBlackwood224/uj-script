@@ -1,0 +1,274 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #e0e0e0;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* ÚJ: Minden képernyő konténer */
+.screen-container {
+    background-color: #333333;
+    border: 2px solid #666666;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(102, 102, 102, 0.5);
+    width: 90%;
+    max-width: 950px; /* Megnövelt max szélesség */
+    height: 85vh; /* Megnövelt magasság az egész játékablaknak */
+    max-height: 95vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    color: #ffffff;
+    overflow: hidden;
+    /* Alapértelmezetten mindegyik rejtett, a JS kezeli a megjelenítést */
+}
+
+/* --- Main Menu Specific Styles --- */
+#main-menu-screen {
+    background-image: url('images/menu_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    /* A főmenü magasságát és szélességét a .screen-container adja */
+}
+
+/* Character Creation, Story, Settings képernyők - ezek is a .screen-container stílusait öröklik */
+#char-creation-screen, #story-screen, #settings-screen {
+    justify-content: flex-start; /* Tartalom felülre igazítása */
+    align-items: stretch; /* Tartalom kitölti a szélességet */
+    text-align: center;
+    padding-bottom: 20px; /* Hely a gombnak az alján */
+}
+
+#char-creation-screen .input-group,
+#char-creation-screen button,
+#story-screen .story-text,
+#settings-screen .settings-options {
+    margin-top: 15px; /* Kicsit több hely a felső cím alatt */
+    margin-bottom: 15px;
+}
+
+.menu-overlay {
+    background-color: rgba(51, 51, 51, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #666666;
+    text-align: center;
+}
+
+.menu-overlay h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.menu-buttons button {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    background-color: #666666;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 8px rgba(102, 102, 102, 0.3);
+}
+
+.menu-buttons button:hover {
+    background-color: #888888;
+    color: #333333;
+    box-shadow: 0 0 15px rgba(136, 136, 136, 0.7);
+}
+
+/* --- General Element Styles (unchanged mostly) --- */
+.hidden {
+    display: none !important; /* Fontos: !important, hogy felülírja a flexbox displayt, ha szükséges */
+}
+
+h1, h2 {
+    color: #f0f0f0;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label, p {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #666666;
+    background-color: #444444;
+    color: #ffffff;
+    border-radius: 4px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+    accent-color: #aaaaaa;
+}
+
+button {
+    background-color: #666666;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #888888;
+    color: #333333;
+}
+
+/* --- Game Output (Console) & Status Panel Specific Styles --- */
+#game-screen {
+    /* A .screen-container adja a fő méretet, a game-screen belül rugalmas */
+    flex-grow: 1; /* Foglalja el a rendelkezésre álló helyet a .screen-containeren belül */
+}
+
+.game-area-wrapper {
+    display: flex;
+    flex-grow: 1;
+    margin-bottom: 15px;
+    gap: 20px;
+    overflow: hidden;
+}
+
+.game-output {
+    background-color: #222222;
+    border: 1px solid #666666;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-y: auto; /* Görgetés a szöveg kimeneten */
+    flex-grow: 1;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.status-panel {
+    background-color: #2a2a2a;
+    border: 1px solid #666666;
+    padding: 15px;
+    border-radius: 4px;
+    width: 280px; /* Megnövelt szélesség a státusz panelnek */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.status-panel h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #cccccc;
+    text-shadow: 0 0 3px rgba(204, 204, 204, 0.5);
+}
+
+#status-panel-content {
+    flex-grow: 1;
+    overflow-y: auto; /* Görgetés a státusz panel tartalmán */
+}
+
+#status-panel-content p {
+    margin: 3px 0;
+    line-height: 1.3;
+    color: #e0e0e0;
+}
+
+.command-area {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.command-area input {
+    flex-grow: 1;
+}
+
+/* --- Command List & Story Screen Styles (these are for specific content, not for .screen-container) --- */
+/* These elements are now children of .screen-container directly, or within a wrapper */
+.story-text, .settings-options {
+    background-color: #222222;
+    border: 1px solid #666666;
+    padding: 15px;
+    border-radius: 4px;
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 15px;
+    text-align: left; /* Történet szöveg balra igazítása */
+}
+
+.story-text p, .settings-options p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #f0f0f0;
+}
+
+.commands-list strong {
+    color: #aaaaaa;
+}
+
+/* Styles for displayMessage function */
+.game-output p {
+    margin: 5px 0;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+.game-output .error {
+    color: #ff6666;
+    font-weight: bold;
+}
+
+.game-output .header {
+    font-weight: bold;
+    color: #cccccc;
+    text-shadow: 0 0 3px rgba(204, 204, 204, 0.5);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Media Queries a kisebb képernyőkhöz */
+@media (max-width: 768px) {
+    .game-area-wrapper {
+        flex-direction: column;
+    }
+
+    .status-panel {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
